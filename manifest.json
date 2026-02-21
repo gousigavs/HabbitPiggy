@@ -2,7 +2,7 @@
   "name": "Habit Piggy",
   "short_name": "HabitPiggy",
   "description": "Track your habits and earn rewards",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f6f8fa",
   "theme_color": "#4c6ef5",
