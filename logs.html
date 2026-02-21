@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Piggy - Logs</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <button onclick="window.location.href='index.html'">🏠 Dashboard</button>
+    <button onclick="window.location.href='calendar.html'">📅 Calendar</button>
+    <button onclick="window.location.href='heatmap.html'">🔥 Heatmap</button>
+    <button onclick="window.location.href='reports.html'">📊 Reports</button>
+    <button onclick="window.location.href='logs.html'">💻 Logs</button>
+    <button onclick="window.location.href='recipes.html'">🍲 Recipes</button>
+    <button onclick="window.location.href='piggy.html'">💰 Piggy</button>
+  </nav>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>📝 Work Logs</h1>
+    </header>
+
+    <!-- Code Section -->
+    <section class="card">
+      <h2>💻 Code Learning</h2>
+      <input id="codeLearn" placeholder="What did you learn today?" />
+      <input id="codeRevise" placeholder="What did you revise?" />
+      <button onclick="addCodeEntry()" class="primary-btn">Save Entry</button>
+      <div id="codeEntries" style="margin-top:20px;"></div>
+    </section>
+
+    <!-- Crochet Section -->
+    <section class="card">
+      <h2>🧶 Crochet Work</h2>
+      <input id="crochetProject" placeholder="What did you work on?" />
+      <input id="crochetHours" placeholder="Hours spent" type="number" />
+      <button onclick="addCrochetEntry()" class="primary-btn">Save Entry</button>
+      <div id="crochetEntries" style="margin-top:20px;"></div>
+    </section>
+
+    <button onclick="goHome()" class="primary-btn">Back to Dashboard</button>
+
+  </div>
+
+  <script src="js/logs.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Piggy - Recipes</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <button onclick="window.location.href='index.html'">🏠 Dashboard</button>
+    <button onclick="window.location.href='calendar.html'">📅 Calendar</button>
+    <button onclick="window.location.href='heatmap.html'">🔥 Heatmap</button>
+    <button onclick="window.location.href='reports.html'">📊 Reports</button>
+    <button onclick="window.location.href='logs.html'">💻 Logs</button>
+    <button onclick="window.location.href='recipes.html'">🍲 Recipes</button>
+    <button onclick="window.location.href='piggy.html'">💰 Piggy</button>
+  </nav>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>🍲 Recipe Log</h1>
+    </header>
+
+    <section class="card">
+      <h2>🍲 Cooking Tracker</h2>
+      <input id="dishName" placeholder="Dish name" />
+      <input id="dishNotes" placeholder="Notes / Ingredients" />
+      <button onclick="addRecipe()" class="primary-btn">Save Recipe</button>
+      <div id="recipeEntries" style="margin-top:20px;"></div>
+    </section>
+
+    <button onclick="goHome()" class="primary-btn">Back to Dashboard</button>
+
+  </div>
+
+  <script src="js/recipes.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Piggy - Piggy Bank</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <button onclick="window.location.href='index.html'">🏠 Dashboard</button>
+    <button onclick="window.location.href='calendar.html'">📅 Calendar</button>
+    <button onclick="window.location.href='heatmap.html'">🔥 Heatmap</button>
+    <button onclick="window.location.href='reports.html'">📊 Reports</button>
+    <button onclick="window.location.href='logs.html'">💻 Logs</button>
+    <button onclick="window.location.href='recipes.html'">🍲 Recipes</button>
+    <button onclick="window.location.href='piggy.html'">💰 Piggy</button>
+  </nav>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>🐷 Piggy Bank</h1>
+    </header>
+
+    <section class="card">
+      <h1 style="font-size: 48px; text-align: center; margin: 20px 0;">₹<span id="piggyBalance">0</span></h1>
+      
+      <button onclick="spendBalance()" class="primary-btn">Spend This Week</button>
+      
+      <button onclick="handleWithdraw()" class="primary-btn" style="margin-top: 10px; background: #f59e0b;">
+        Withdraw Amount
+      </button>
+    </section>
+
+    <section class="card">
+      <h2>💸 Transaction History</h2>
+      <div id="transactionList"></div>
+    </section>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/piggy.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      updatePiggyDisplay();
+    });
+
+    function updatePiggyDisplay() {
+      const data = getData();
+      document.getElementById("piggyBalance").innerText = data.balance || 0;
+      
+      const history = getTransactionHistory();
+      const container = document.getElementById("transactionList");
+      
+      if (history.length === 0) {
+        container.innerHTML = "<p>No transactions yet.</p>";
+        return;
+      }
+      
+      container.innerHTML = history.slice(0, 20).map(t => `
+        <div class="mini-card">
+          <strong>${t.date}</strong>
+          ${t.earned ? `<p style="color: #22c55e;">+₹${t.earned} earned</p>` : ''}
+          ${t.penalty ? `<p style="color: #ef4444;">-₹${t.penalty} penalty</p>` : ''}
+          ${t.withdraw ? `<p style="color: #f59e0b;">-₹${t.withdraw} withdrawn</p>` : ''}
+          <p>Balance: ₹${t.balance}</p>
+        </div>
+      `).join("");
+    }
+
+    function spendBalance() {
+      const result = withdrawAll();
+      if (result.success) {
+        alert(`Spent ₹${result.withdrawn}! Enjoy your reward 🎉`);
+        updatePiggyDisplay();
+      }
+    }
+
+    function handleWithdraw() {
+      const amount = prompt("Enter amount to withdraw:");
+      if (!amount) return;
+      
+      const result = withdrawAmount(parseFloat(amount));
+      if (result.success) {
+        alert(`Withdrew ₹${amount} successfully!`);
+        updatePiggyDisplay();
+      } else {
+        alert(result.message);
+      }
+    }
+  </script>
+</body>
+</html>

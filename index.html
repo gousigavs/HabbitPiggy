@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4c6ef5" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Habit Piggy" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png" />
+  <title>Habit Piggy</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <button onclick="window.location.href='index.html'">🏠 Dashboard</button>
+    <button onclick="window.location.href='calendar.html'">📅 Calendar</button>
+    <button onclick="window.location.href='heatmap.html'">🔥 Heatmap</button>
+    <button onclick="window.location.href='reports.html'">📊 Reports</button>
+    <button onclick="window.location.href='logs.html'">💻 Logs</button>
+    <button onclick="window.location.href='recipes.html'">🍲 Recipes</button>
+    <button onclick="window.location.href='piggy.html'">💰 Piggy</button>
+  </nav>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>🌿 Habit Piggy</h1>
+
+      <div class="stats">
+        <div>🔥 <span id="streak">0</span> Days</div>
+        <div>💰 ₹<span id="balance">0</span></div>
+      </div>
+
+      <div class="progress-wrapper">
+        <div class="progress-bar" id="streakBar"></div>
+      </div>
+
+      <div class="extra-stats">
+        <span>Multiplier: <strong id="multiplier">1x</strong></span>
+        <span>Discipline: <strong id="score">0</strong></span>
+      </div>
+    </header>
+
+    <!-- Daily Habits -->
+    <section class="card">
+      <h2>🌞 Daily Habits</h2>
+      <div id="dailyHabits" class="habit-list"></div>
+    </section>
+
+    <!-- Weekly Habits -->
+    <section class="card">
+      <h2>📅 Weekly Habits</h2>
+      <div id="weeklyHabits" class="habit-list"></div>
+    </section>
+
+    <!-- Biweekly Habits -->
+    <section class="card">
+      <h2>🗓️ Biweekly Habits</h2>
+      <div id="biweeklyHabits" class="habit-list"></div>
+    </section>
+
+    <!-- Don'ts -->
+    <section class="card">
+      <h2>🚫 Don'ts</h2>
+      <div id="dontHabits" class="habit-list"></div>
+    </section>
+
+    <button id="submitDay" class="primary-btn">
+      Complete Today
+    </button>
+
+    <button onclick="showAddHabitModal()" class="primary-btn" style="margin-top: 10px; background: #8b5cf6;">
+      ➕ Add New Habit
+    </button>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/habits.js"></script>
+  <script src="js/piggy.js"></script>
+  <script src="js/weekly.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Register service worker for PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    }
+  </script>
+
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <h2>🎉 Great Job!</h2>
+      <p id="modalText"></p>
+      <button onclick="closeModal()" class="primary-btn">Nice!</button>
+    </div>
+  </div>
+
+  <div class="modal" id="addHabitModal">
+    <div class="modal-content">
+      <h2>➕ Add New Habit</h2>
+      
+      <input id="habitName" placeholder="Habit name" style="margin-bottom: 10px;" />
+      
+      <select id="habitType" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <option value="boolean">Yes/No (Boolean)</option>
+        <option value="count">Count (Number)</option>
+      </select>
+      
+      <select id="habitFrequency" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="biweekly">Biweekly</option>
+      </select>
+      
+      <input id="habitReward" type="number" placeholder="Reward (₹)" style="margin-bottom: 10px;" />
+      
+      <div style="display: flex; gap: 10px;">
+        <button onclick="addNewHabit()" class="primary-btn">Add Habit</button>
+        <button onclick="closeAddHabitModal()" class="primary-btn" style="background: #6b7280;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

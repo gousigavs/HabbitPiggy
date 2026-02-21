@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Piggy - Calendar</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <button onclick="window.location.href='index.html'">🏠 Dashboard</button>
+    <button onclick="window.location.href='calendar.html'">📅 Calendar</button>
+    <button onclick="window.location.href='heatmap.html'">🔥 Heatmap</button>
+    <button onclick="window.location.href='reports.html'">📊 Reports</button>
+    <button onclick="window.location.href='logs.html'">💻 Logs</button>
+    <button onclick="window.location.href='recipes.html'">🍲 Recipes</button>
+    <button onclick="window.location.href='piggy.html'">💰 Piggy</button>
+  </nav>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>📅 Progress Calendar</h1>
+      <div class="stats">
+        <button onclick="prevMonth()">⬅</button>
+        <span id="monthTitle"></span>
+        <button onclick="nextMonth()">➡</button>
+      </div>
+    </header>
+
+    <div id="calendarGrid" class="calendar-grid"></div>
+
+    <button onclick="goHome()" class="primary-btn">
+      Back to Dashboard
+    </button>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/calendar.js"></script>
+</body>
+</html>

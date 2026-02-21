@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Piggy - Reports</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <button onclick="window.location.href='index.html'">🏠 Dashboard</button>
+    <button onclick="window.location.href='calendar.html'">📅 Calendar</button>
+    <button onclick="window.location.href='heatmap.html'">🔥 Heatmap</button>
+    <button onclick="window.location.href='reports.html'">📊 Reports</button>
+    <button onclick="window.location.href='logs.html'">💻 Logs</button>
+    <button onclick="window.location.href='recipes.html'">🍲 Recipes</button>
+    <button onclick="window.location.href='piggy.html'">💰 Piggy</button>
+  </nav>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>📊 Monthly Report</h1>
+    </header>
+
+    <section class="card">
+      <h2>Summary</h2>
+      <div id="summary"></div>
+    </section>
+
+    <section class="card">
+      <h2>📈 Daily Activity Graph</h2>
+      <canvas id="activityChart"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>💰 Daily Earnings Graph</h2>
+      <canvas id="earningsChart"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>📊 Habit Completion %</h2>
+      <canvas id="completionChart"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>💵 Money Earned Per Habit</h2>
+      <canvas id="habitEarningsChart"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Export Data</h2>
+      <button onclick="downloadCSV()" class="primary-btn">Download CSV (This Month)</button>
+      <button onclick="downloadJSON()" class="primary-btn" style="margin-top: 10px;">Download JSON (Full Backup)</button>
+      <button onclick="downloadFullYearCSV()" class="primary-btn" style="margin-top: 10px;">Download CSV (Full Year)</button>
+    </section>
+
+    <section class="card">
+      <h2>Habit Breakdown</h2>
+      <div id="breakdown"></div>
+    </section>
+
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/reports.js"></script>
+</body>
+</html>
